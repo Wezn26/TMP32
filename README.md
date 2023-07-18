@@ -1,3 +1,3 @@
 # TMP32
 ## NetBeans Project
-### The programming templates
+### The 32 programming templates
