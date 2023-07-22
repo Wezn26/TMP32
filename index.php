@@ -1,8 +1,10 @@
 <?php
 include './autoload.php';
 
-use App\Creational\Singleton;
 use App\Creational\Factory\WorkerFactory;
+use App\Creational\FactoryMethod\DesignerFactory;
+use App\Creational\FactoryMethod\DeveloperFactory;
+use App\Creational\Singleton;
 //VIEW SINGLETON TEMPLATE
 $connection = Singleton::getInstance();
 $connection::setName('Singleton');
@@ -14,5 +16,12 @@ $connection2 = Singleton::getInstance();
 //VIEW FACTORY TEMPLATE
 $worker = WorkerFactory::make();
 $worker->setName('Dan');
-var_dump($worker->getName());
+//var_dump($worker->getName());
+
+//VIEW FACTORY_METHOD TEMPLATE
+$developer = DeveloperFactory::make();
+$designer = DesignerFactory::make();
+
+$developer->work();
+$designer->work();
 
