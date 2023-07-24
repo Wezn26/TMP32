@@ -3,6 +3,8 @@ include './autoload.php';
 
 use App\Creational\AbstarctFactory\Native\NativeWorkerFactory;
 use App\Creational\AbstarctFactory\Outsource\OutsourceWorkerFactory;
+use App\Creational\Builder\Operator;
+use App\Creational\Builder\TextBuilder;
 use App\Creational\Factory\WorkerFactory;
 use App\Creational\Singleton;
 use App\Creational\StaticFactory\WorkerFactory as StaticWorkerFactory;
@@ -41,8 +43,16 @@ $outsourceDeveloper = OutsourceWorkerFactory::makeDeveloperWorker();
 $nativeDesigner = NativeWorkerFactory::makeDesignerWorker();
 $outsorceDesigner = OutsourceWorkerFactory::makeDesignerWorker();
 
-$nativeDeveloper->work();
-$outsourceDeveloper->work();
-$outsorceDesigner->work();
-$nativeDesigner->work();
+//$nativeDeveloper->work();
+//$outsourceDeveloper->work();
+//$outsorceDesigner->work();
+//$nativeDesigner->work();
+
+//VIEW BUILDER TEMPLATES
+$operator = new Operator();
+$builder = new TextBuilder();
+$builder->make();
+$message = $operator->make($builder);
+
+var_dump($message->getText());
 
