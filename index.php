@@ -1,6 +1,8 @@
 <?php
 include './autoload.php';
 
+use App\Creational\AbstarctFactory\Native\NativeWorkerFactory;
+use App\Creational\AbstarctFactory\Outsource\OutsourceWorkerFactory;
 use App\Creational\Factory\WorkerFactory;
 use App\Creational\Singleton;
 use App\Creational\StaticFactory\WorkerFactory as StaticWorkerFactory;
@@ -30,6 +32,17 @@ $developer = StaticWorkerFactory::make('Developer');
 $designer = StaticWorkerFactory::make('Designer');
 
 //var_dump($developer);
-$developer->work();
-$designer->work();
+//$developer->work();
+//$designer->work();
+
+//VIEW ABSTARCT FACTORY
+$nativeDeveloper = NativeWorkerFactory::makeDeveloperWorker();
+$outsourceDeveloper = OutsourceWorkerFactory::makeDeveloperWorker();
+$nativeDesigner = NativeWorkerFactory::makeDesignerWorker();
+$outsorceDesigner = OutsourceWorkerFactory::makeDesignerWorker();
+
+$nativeDeveloper->work();
+$outsourceDeveloper->work();
+$outsorceDesigner->work();
+$nativeDesigner->work();
 

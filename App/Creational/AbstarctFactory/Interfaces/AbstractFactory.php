@@ -1,0 +1,18 @@
+<?php
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/PHPInterface.php to edit this template
+ */
+
+namespace App\Creational\AbstarctFactory\Interfaces;
+
+/**
+ *
+ * @author leonid
+ */
+interface AbstractFactory 
+{
+    public static function makeDeveloperWorker();
+    public static function makeDesignerWorker();
+}
