@@ -2,9 +2,9 @@
 include './autoload.php';
 
 use App\Creational\Factory\WorkerFactory;
-use App\Creational\FactoryMethod\DesignerFactory;
-use App\Creational\FactoryMethod\DeveloperFactory;
 use App\Creational\Singleton;
+use App\Creational\StaticFactory\WorkerFactory as StaticWorkerFactory;
+
 //VIEW SINGLETON TEMPLATE
 $connection = Singleton::getInstance();
 $connection::setName('Singleton');
@@ -19,9 +19,17 @@ $worker->setName('Dan');
 //var_dump($worker->getName());
 
 //VIEW FACTORY_METHOD TEMPLATE
-$developer = DeveloperFactory::make();
-$designer = DesignerFactory::make();
+//$developer = DeveloperFactory::make();
+//$designer = DesignerFactory::make();
 
+//$developer->work();
+//$designer->work();
+
+//VIEW STATIC FACTORY METHOD
+$developer = StaticWorkerFactory::make('Developer');
+$designer = StaticWorkerFactory::make('Designer');
+
+//var_dump($developer);
 $developer->work();
 $designer->work();
 
