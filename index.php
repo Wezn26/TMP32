@@ -8,6 +8,7 @@ use App\Creational\Builder\TextBuilder;
 use App\Creational\Factory\WorkerFactory;
 use App\Creational\Singleton;
 use App\Creational\StaticFactory\WorkerFactory as StaticWorkerFactory;
+use App\Creational\Prototype\Developer;
 
 //VIEW SINGLETON TEMPLATE
 $connection = Singleton::getInstance();
@@ -54,5 +55,17 @@ $builder = new TextBuilder();
 $builder->make();
 $message = $operator->make($builder);
 
-var_dump($message->getText());
+//var_dump($message->getText());
+
+//VIEW PROTOTYPE TEMPLATES
+$developer = new Developer();
+$developer2 = clone $developer;
+$developer->setName('Yuriy');
+$developer->setPosition('Major Developer!!!');
+$developer2->setName('Yana');
+$developer2->setPosition('Junior Developer!!!');
+var_dump($developer->getName());
+var_dump($developer->getPosition());
+var_dump($developer2->getName());
+var_dump($developer2->getPosition());
 
