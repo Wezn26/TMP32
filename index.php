@@ -10,9 +10,12 @@ use App\Creational\Pool\WorkerPool;
 use App\Creational\Prototype\Developer;
 use App\Creational\Singleton;
 use App\Creational\StaticFactory\WorkerFactory as StaticWorkerFactory;
-use App\Structural\Composite\Header;
+use App\Structural\Adapter\NativeDeveloper;
+use App\Structural\Adapter\OutsourceDeveloper;
+use App\Structural\Adapter\OutsourceWorkerAdapter;
 use App\Structural\Composite\Body;
 use App\Structural\Composite\Footer;
+use App\Structural\Composite\Header;
 use App\Structural\Composite\Mail;
 use App\Structural\DependencyInjection\Controller;
 use App\Structural\DependencyInjection\ControllerConfiguration;
@@ -121,7 +124,15 @@ $mail->addPart(new Header('Header'));
 $mail->addPart(new Body('Body'));
 $mail->addPart(new Footer('Footer'));
 
-var_dump($mail->render());
+//var_dump($mail->render());
+
+// ADAPTER
+$nativeDeveloper = new NativeDeveloper();
+$outsourceDeveloper = new OutsourceDeveloper();
+
+$outsourceWorkerAdapter = new OutsourceWorkerAdapter($outsourceDeveloper);
+var_dump($nativeDeveloper->countSalary());
+var_dump($outsourceWorkerAdapter->countSalary());
 
 
 // STRUCTURAL TEMPLATES END
