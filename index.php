@@ -10,6 +10,10 @@ use App\Creational\Pool\WorkerPool;
 use App\Creational\Prototype\Developer;
 use App\Creational\Singleton;
 use App\Creational\StaticFactory\WorkerFactory as StaticWorkerFactory;
+use App\Structural\Composite\Header;
+use App\Structural\Composite\Body;
+use App\Structural\Composite\Footer;
+use App\Structural\Composite\Mail;
 use App\Structural\DependencyInjection\Controller;
 use App\Structural\DependencyInjection\ControllerConfiguration;
 use App\Structural\Registry\Registry;
@@ -109,8 +113,15 @@ $controllerTagIndex = new Controller($configurationTagIndex);
 $service = new Service();
 Registry::setServices(1, $service);
 $service = Registry::getServices(1);
-var_dump($service);
+//var_dump($service);
 
+// COMPOSITE
+$mail = new Mail();
+$mail->addPart(new Header('Header'));
+$mail->addPart(new Body('Body'));
+$mail->addPart(new Footer('Footer'));
+
+var_dump($mail->render());
 
 
 // STRUCTURAL TEMPLATES END
