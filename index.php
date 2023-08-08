@@ -12,6 +12,8 @@ use App\Creational\Singleton;
 use App\Creational\StaticFactory\WorkerFactory as StaticWorkerFactory;
 use App\Structural\DependencyInjection\Controller;
 use App\Structural\DependencyInjection\ControllerConfiguration;
+use App\Structural\Registry\Registry;
+use App\Structural\Registry\Service;
 
 // CREATIONAL TEMPLATES START
 
@@ -99,9 +101,15 @@ $controller = new Controller($configuration);
 $controllerShow = new Controller($configurationShow);
 $controllerTagIndex = new Controller($configurationTagIndex);
 
-var_dump($controller->getConfiguration());
-var_dump($controllerShow->getConfiguration());
-var_dump($controllerTagIndex->getConfiguration());
+//var_dump($controller->getConfiguration());
+//var_dump($controllerShow->getConfiguration());
+//var_dump($controllerTagIndex->getConfiguration());
+
+// REGISTRY
+$service = new Service();
+Registry::setServices(1, $service);
+$service = Registry::getServices(1);
+var_dump($service);
 
 
 
