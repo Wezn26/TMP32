@@ -6,10 +6,14 @@ use App\Creational\AbstarctFactory\Outsource\OutsourceWorkerFactory;
 use App\Creational\Builder\Operator;
 use App\Creational\Builder\TextBuilder;
 use App\Creational\Factory\WorkerFactory;
+use App\Creational\Pool\WorkerPool;
 use App\Creational\Prototype\Developer;
 use App\Creational\Singleton;
 use App\Creational\StaticFactory\WorkerFactory as StaticWorkerFactory;
-use App\Creational\Pool\WorkerPool;
+use App\Structural\DependencyInjection\Controller;
+use App\Structural\DependencyInjection\ControllerConfiguration;
+
+// CREATIONAL TEMPLATES START
 
 //VIEW SINGLETON TEMPLATE
 $connection = Singleton::getInstance();
@@ -53,8 +57,8 @@ $outsorceDesigner = OutsourceWorkerFactory::makeDesignerWorker();
 //VIEW BUILDER TEMPLATES
 $operator = new Operator();
 $builder = new TextBuilder();
-$builder->make();
-$message = $operator->make($builder);
+//$builder->make();
+//$message = $operator->make($builder);
 
 //var_dump($message->getText());
 
@@ -77,8 +81,30 @@ $worker2 = $pool->getWorker();
 $worker3 = $pool->getWorker();
 $pool->release($worker);
 
-$worker->work();
+//$worker->work();
 
-var_dump($pool->getFreeWorkers());
-var_dump($pool->getBusyWorkers());
+//var_dump($pool->getFreeWorkers());
+//var_dump($pool->getBusyWorkers());
+
+//CREATIONAL TEMPLATES END
+
+// STRUCTURAL TEMPLATES START
+
+// DEPENDENCY INJECTION
+$configuration = new ControllerConfiguration('PostController', 'index');
+$configurationShow = new ControllerConfiguration('PostController', 'show');
+$configurationTagIndex = new ControllerConfiguration('TagController', 'index');
+
+$controller = new Controller($configuration);
+$controllerShow = new Controller($configurationShow);
+$controllerTagIndex = new Controller($configurationTagIndex);
+
+var_dump($controller->getConfiguration());
+var_dump($controllerShow->getConfiguration());
+var_dump($controllerTagIndex->getConfiguration());
+
+
+
+// STRUCTURAL TEMPLATES END
+
 

@@ -11,3 +11,16 @@
 - Builder
 - Prototype
 - Pool
+
+# STRUCTURAL TEMPLATES
+* dependency_injection
+* registry
+* composite
+* adapter
+* bridge
+* data_mapper
+* decorator
+* facade
+* fluent_interface
+* flyweight
+* proxy
