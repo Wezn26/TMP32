@@ -23,6 +23,9 @@ use App\Structural\Composite\Header;
 use App\Structural\Composite\Mail;
 use App\Structural\DataMapper\WorkerMapper;
 use App\Structural\DataMapper\WorkerStorageAdapter;
+use App\Structural\Decorator\Developer as DeveloperDecorator;
+use App\Structural\Decorator\DeveloperOverTime;
+use App\Structural\Decorator\DeveloperTooOverTime;
 use App\Structural\DependencyInjection\Controller;
 use App\Structural\DependencyInjection\ControllerConfiguration;
 use App\Structural\Registry\Registry;
@@ -162,8 +165,19 @@ $workerMapper = new WorkerMapper($workerStorageAdapter);
 
 $worker = $workerMapper->findById(1);
 $worker2 = $workerMapper->findById(2);
-var_dump($worker->getName());
-var_dump($worker2);
+//var_dump($worker->getName());
+//var_dump($worker2);
+
+// DECORATOR
+$developer = new DeveloperDecorator();
+
+$developerOverTime = new DeveloperOverTime($developer);
+$developerTooOverTime = new DeveloperTooOverTime($developer);
+
+var_dump($developer->countSalary());
+var_dump($developerOverTime->countSalary());
+var_dump($developerTooOverTime->countSalary());
+
 
 // STRUCTURAL TEMPLATES END
 
