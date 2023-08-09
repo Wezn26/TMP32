@@ -13,6 +13,10 @@ use App\Creational\StaticFactory\WorkerFactory as StaticWorkerFactory;
 use App\Structural\Adapter\NativeDeveloper;
 use App\Structural\Adapter\OutsourceDeveloper;
 use App\Structural\Adapter\OutsourceWorkerAdapter;
+use App\Structural\Bridge\HTMLText;
+use App\Structural\Bridge\HTMLTextService;
+use App\Structural\Bridge\SimpleText;
+use App\Structural\Bridge\SimpleTextService;
 use App\Structural\Composite\Body;
 use App\Structural\Composite\Footer;
 use App\Structural\Composite\Header;
@@ -131,9 +135,18 @@ $nativeDeveloper = new NativeDeveloper();
 $outsourceDeveloper = new OutsourceDeveloper();
 
 $outsourceWorkerAdapter = new OutsourceWorkerAdapter($outsourceDeveloper);
-var_dump($nativeDeveloper->countSalary());
-var_dump($outsourceWorkerAdapter->countSalary());
+//var_dump($nativeDeveloper->countSalary());
+//var_dump($outsourceWorkerAdapter->countSalary());
 
+// BRIDGE
+$simpleText = new SimpleText();
+$htmlText = new HTMLText();
+
+$simpleTextService = new SimpleTextService($simpleText);
+$htmlTextService = new HTMLTextService($htmlText);
+
+var_dump($simpleTextService->getFormatter('Hello'));
+var_dump($htmlTextService->getFormatter('Hello'));
 
 // STRUCTURAL TEMPLATES END
 
