@@ -21,6 +21,8 @@ use App\Structural\Composite\Body;
 use App\Structural\Composite\Footer;
 use App\Structural\Composite\Header;
 use App\Structural\Composite\Mail;
+use App\Structural\DataMapper\WorkerMapper;
+use App\Structural\DataMapper\WorkerStorageAdapter;
 use App\Structural\DependencyInjection\Controller;
 use App\Structural\DependencyInjection\ControllerConfiguration;
 use App\Structural\Registry\Registry;
@@ -145,8 +147,23 @@ $htmlText = new HTMLText();
 $simpleTextService = new SimpleTextService($simpleText);
 $htmlTextService = new HTMLTextService($htmlText);
 
-var_dump($simpleTextService->getFormatter('Hello'));
-var_dump($htmlTextService->getFormatter('Hello'));
+//var_dump($simpleTextService->getFormatter('Hello'));
+//var_dump($htmlTextService->getFormatter('Hello'));
+
+// DATA MAPPER
+$data = [
+    1 => [
+        'name' => 'Vasya'
+    ]
+];
+
+$workerStorageAdapter = new WorkerStorageAdapter($data);
+$workerMapper = new WorkerMapper($workerStorageAdapter);
+
+$worker = $workerMapper->findById(1);
+$worker2 = $workerMapper->findById(2);
+var_dump($worker->getName());
+var_dump($worker2);
 
 // STRUCTURAL TEMPLATES END
 
