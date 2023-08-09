@@ -28,6 +28,9 @@ use App\Structural\Decorator\DeveloperOverTime;
 use App\Structural\Decorator\DeveloperTooOverTime;
 use App\Structural\DependencyInjection\Controller;
 use App\Structural\DependencyInjection\ControllerConfiguration;
+use App\Structural\Facade\Designer;
+use App\Structural\Facade\Developer as DeveloperFacade;
+use App\Structural\Facade\WorkerFacade;
 use App\Structural\Registry\Registry;
 use App\Structural\Registry\Service;
 
@@ -174,9 +177,18 @@ $developer = new DeveloperDecorator();
 $developerOverTime = new DeveloperOverTime($developer);
 $developerTooOverTime = new DeveloperTooOverTime($developer);
 
-var_dump($developer->countSalary());
-var_dump($developerOverTime->countSalary());
-var_dump($developerTooOverTime->countSalary());
+//var_dump($developer->countSalary());
+//var_dump($developerOverTime->countSalary());
+//var_dump($developerTooOverTime->countSalary());
+
+// FACADE
+$developer = new DeveloperFacade();
+$designer = new Designer();
+
+$workerFacade = new WorkerFacade($developer, $designer);
+
+$workerFacade->startWork();
+$workerFacade->stopWork();
 
 
 // STRUCTURAL TEMPLATES END
