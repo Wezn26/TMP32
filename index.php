@@ -31,6 +31,7 @@ use App\Structural\DependencyInjection\ControllerConfiguration;
 use App\Structural\Facade\Designer;
 use App\Structural\Facade\Developer as DeveloperFacade;
 use App\Structural\Facade\WorkerFacade;
+use App\Structural\FluentInterface\QueryBuilder;
 use App\Structural\Registry\Registry;
 use App\Structural\Registry\Service;
 
@@ -187,8 +188,19 @@ $designer = new Designer();
 
 $workerFacade = new WorkerFacade($developer, $designer);
 
-$workerFacade->startWork();
-$workerFacade->stopWork();
+//$workerFacade->startWork();
+//$workerFacade->stopWork();
+
+// FLUENT INTERFACE
+$queryBuilder = new QueryBuilder();
+$query = $queryBuilder->select(['title', 'id'])
+                      ->from(['posts'])
+                      ->where(['views > 20'])
+                      ->get();
+
+var_dump($query);
+
+
 
 
 // STRUCTURAL TEMPLATES END
