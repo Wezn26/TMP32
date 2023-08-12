@@ -32,6 +32,7 @@ use App\Structural\Facade\Designer;
 use App\Structural\Facade\Developer as DeveloperFacade;
 use App\Structural\Facade\WorkerFacade;
 use App\Structural\FluentInterface\QueryBuilder;
+use App\Structural\Flyweight\MailFactory;
 use App\Structural\Registry\Registry;
 use App\Structural\Registry\Service;
 
@@ -198,9 +199,14 @@ $query = $queryBuilder->select(['title', 'id'])
                       ->where(['views > 20'])
                       ->get();
 
-var_dump($query);
+//var_dump($query);
 
-
+// FLYWEIGHT
+$mailFactory = new MailFactory();
+$mail = $mailFactory->getMail(10, 'business');
+$mail2 = $mailFactory->getMail(11, 'job');
+var_dump($mail->render());
+var_dump($mail2->render());
 
 
 // STRUCTURAL TEMPLATES END
