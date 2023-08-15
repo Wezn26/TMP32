@@ -28,6 +28,7 @@ use App\Structural\Facade\Developer as DeveloperFacade;
 use App\Structural\Facade\WorkerFacade;
 use App\Structural\FluentInterface\QueryBuilder;
 use App\Structural\Flyweight\MailFactory;
+use App\Structural\Proxy\WorkerProxy;
 use App\Structural\Registry\Registry;
 use App\Structural\Registry\Service;
 
@@ -123,7 +124,15 @@ $query = $queryBuilder->select(['title', 'id'])
 $mailFactory = new MailFactory();
 $mail = $mailFactory->getMail(10, 'business');
 $mail2 = $mailFactory->getMail(11, 'job');
-var_dump($mail->render());
-var_dump($mail2->render());
+//var_dump($mail->render());
+//var_dump($mail2->render());
+
+// PROXY
+$workerProxy = new WorkerProxy();
+$workerProxy->closedHours(10);
+$workerProxy->closedHours(10);
+$salary = $workerProxy->countSalary();
+
+var_dump($salary);
 
 
