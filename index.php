@@ -11,8 +11,14 @@ include './autoload.php';
 
 // STRUCTURAL TEMPLATES START
 
-require './structural.php';
+//require './structural.php';
 
 // STRUCTURAL TEMPLATES END
+
+//BEHAVIORAL TEMPLATES START
+
+require './behavioral.php';
+
+//BEHAVIORAL TEMPLATES END
 
 

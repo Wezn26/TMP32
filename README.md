@@ -24,3 +24,18 @@
 * fluent_interface
 * flyweight
 * proxy
+
+### BEHAVIORAL TEMPLATES
+* state
+* strategy
+* object_null
+* command
+* interpreter
+* specification
+* chain
+* iterator
+* mediator
+* memento
+* obsever
+* template_method
+* visitor
