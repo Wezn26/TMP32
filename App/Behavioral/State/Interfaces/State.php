@@ -15,6 +15,6 @@ use App\Behavioral\State\Task;
  */
 interface State 
 {
-    public function toNext(Task $task);
-    public function getStatus();
+   public function toNext(Task $task);
+   public function getStatus(): string;
 }

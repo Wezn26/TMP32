@@ -31,7 +31,7 @@ class Task
     public static function make(): Task
     {
         $self = new self();
-        $self->setState($state);
+        $self->setState(new Created());
         return $self;
     }
     
