@@ -11,6 +11,11 @@ use App\Behavioral\Interpreter\VariableExp;
 use App\Behavioral\ObjectNull\Developer;
 use App\Behavioral\ObjectNull\NullWorker;
 use App\Behavioral\ObjectNull\ObjectManager;
+use App\Behavioral\Specification\AndSpecification;
+use App\Behavioral\Specification\NotSpecification;
+use App\Behavioral\Specification\OrSpecification;
+use App\Behavioral\Specification\Pupil;
+use App\Behavioral\Specification\PupilSpecification;
 use App\Behavioral\Startegy\BoolDefiner;
 use App\Behavioral\Startegy\Data;
 use App\Behavioral\Startegy\IntDefiner;
@@ -82,8 +87,29 @@ $varExp = new VariableExp(1);
 $andExp = new AndExp(1, 3);
 $orExp = new OrExpression(1, 3);
 
-var_dump($varExp->interpreter($context));
-var_dump($andExp->interpreter($context));
-var_dump($orExp->interpreter($context));
+//var_dump($varExp->interpreter($context));
+//var_dump($andExp->interpreter($context));
+//var_dump($orExp->interpreter($context));
 // INTERPRETER TEMPLATE END
+
+// SPECIFICATION TEMPLATE START
+
+$spec1 = new PupilSpecification(5);
+$spec2 = new PupilSpecification(10);
+
+$pupil = new Pupil(4);
+
+
+var_dump($spec1->isNormal($pupil));
+var_dump($spec2->isNormal($pupil));
+
+$andSpecification = new AndSpecification($spec1, $spec2);
+$orSpecification = new OrSpecification($spec1, $spec2);
+$notSpecification = new NotSpecification($spec1);
+
+var_dump($andSpecification->isNormal($pupil));
+var_dump($orSpecification->isNormal($pupil));
+var_dump($notSpecification->isNormal($pupil));
+
+// SPECIFICATION TEMPLATE END
 
