@@ -4,6 +4,10 @@ use App\Behavioral\Command\ChangeStatus;
 use App\Behavioral\Command\Invorker;
 use App\Behavioral\Command\Message;
 use App\Behavioral\Command\Output;
+use App\Behavioral\Interpreter\AndExp;
+use App\Behavioral\Interpreter\Context;
+use App\Behavioral\Interpreter\OrExpression;
+use App\Behavioral\Interpreter\VariableExp;
 use App\Behavioral\ObjectNull\Developer;
 use App\Behavioral\ObjectNull\NullWorker;
 use App\Behavioral\ObjectNull\ObjectManager;
@@ -64,8 +68,22 @@ $changeStatus->undo();
 $changeStatus->execute();
 $message->execute();
 
-var_dump($output->getBody());
-
+//var_dump($output->getBody());
 
 // COMMAND TEMPLATE END
+
+// INTERPRETER TEMPLATE START
+
+$context = new Context();
+$context->setWorker('Dan');
+$context->setWorker('Bob');
+
+$varExp = new VariableExp(1);
+$andExp = new AndExp(1, 3);
+$orExp = new OrExpression(1, 3);
+
+var_dump($varExp->interpreter($context));
+var_dump($andExp->interpreter($context));
+var_dump($orExp->interpreter($context));
+// INTERPRETER TEMPLATE END
 
