@@ -1,5 +1,9 @@
 <?php
 
+use App\Behavioral\Chain\DevTask;
+use App\Behavioral\Chain\Junior;
+use App\Behavioral\Chain\Middle;
+use App\Behavioral\Chain\Senior;
 use App\Behavioral\Command\ChangeStatus;
 use App\Behavioral\Command\Invorker;
 use App\Behavioral\Command\Message;
@@ -100,16 +104,27 @@ $spec2 = new PupilSpecification(10);
 $pupil = new Pupil(4);
 
 
-var_dump($spec1->isNormal($pupil));
-var_dump($spec2->isNormal($pupil));
+//var_dump($spec1->isNormal($pupil));
+//var_dump($spec2->isNormal($pupil));
 
 $andSpecification = new AndSpecification($spec1, $spec2);
 $orSpecification = new OrSpecification($spec1, $spec2);
 $notSpecification = new NotSpecification($spec1);
 
-var_dump($andSpecification->isNormal($pupil));
-var_dump($orSpecification->isNormal($pupil));
-var_dump($notSpecification->isNormal($pupil));
+//var_dump($andSpecification->isNormal($pupil));
+//var_dump($orSpecification->isNormal($pupil));
+//var_dump($notSpecification->isNormal($pupil));
 
 // SPECIFICATION TEMPLATE END
+
+// CHAIN TEMPLATE START
+
+$task = new DevTask();
+
+$senior = new Senior(null);
+$middle = new Middle($senior);
+$junior = new Junior($middle);
+
+var_dump($junior->handle($task));
+// CHAIN TEMPLATE END
 
