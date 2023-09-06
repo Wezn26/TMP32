@@ -1,5 +1,9 @@
 <?php
 
+use App\Behavioral\Command\ChangeStatus;
+use App\Behavioral\Command\Invorker;
+use App\Behavioral\Command\Message;
+use App\Behavioral\Command\Output;
 use App\Behavioral\ObjectNull\Developer;
 use App\Behavioral\ObjectNull\NullWorker;
 use App\Behavioral\ObjectNull\ObjectManager;
@@ -44,8 +48,24 @@ $nullableDeveloper = new NullWorker();
 $objectManager = new ObjectManager($developer);
 $nullManager = new ObjectManager($nullableDeveloper);
 
-$objectManager->goWork();
-$nullManager->goWork();
+//$objectManager->goWork();
+//$nullManager->goWork();
 
 // OBJECT NULL END TEMPLATE
+
+// COMMAND TEMPLATE START
+
+$output = new Output();
+$invorker = new Invorker();
+
+$message = new Message($output);
+$changeStatus = new ChangeStatus($output);
+$changeStatus->undo();
+$changeStatus->execute();
+$message->execute();
+
+var_dump($output->getBody());
+
+
+// COMMAND TEMPLATE END
 
