@@ -14,6 +14,9 @@ use App\Behavioral\Interpreter\OrExpression;
 use App\Behavioral\Interpreter\VariableExp;
 use App\Behavioral\Iterator\Worker;
 use App\Behavioral\Iterator\WorkerList;
+use App\Behavioral\Mediator\Developer as DeveloperMediator;
+use App\Behavioral\Mediator\InfoBase;
+use App\Behavioral\Mediator\WorkerInfoBaseMediator;
 use App\Behavioral\ObjectNull\Developer;
 use App\Behavioral\ObjectNull\NullWorker;
 use App\Behavioral\ObjectNull\ObjectManager;
@@ -141,7 +144,16 @@ $workerList->setList([$workerBob, $workerDan, $workerKate]);
 //$workerList->next();
 //$workerList->next();
 //$workerList->prev();
-var_dump($workerList->getByIndex()->getName());
+//var_dump($workerList->getByIndex()->getName());
 
 // ITERATOR TEMPLATE END
+
+// MEDIATOR TEMPLATE START
+
+$developerDan = new DeveloperMediator('Dan');
+$infobase = new InfoBase();
+$workerInfoBaseMediator = new WorkerInfoBaseMediator($developerDan, $infobase);
+$workerInfoBaseMediator->getWorker();
+
+// MEDIATOR TEMPLATE END
 
