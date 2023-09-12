@@ -12,6 +12,8 @@ use App\Behavioral\Interpreter\AndExp;
 use App\Behavioral\Interpreter\Context;
 use App\Behavioral\Interpreter\OrExpression;
 use App\Behavioral\Interpreter\VariableExp;
+use App\Behavioral\Iterator\Worker;
+use App\Behavioral\Iterator\WorkerList;
 use App\Behavioral\ObjectNull\Developer;
 use App\Behavioral\ObjectNull\NullWorker;
 use App\Behavioral\ObjectNull\ObjectManager;
@@ -125,6 +127,21 @@ $senior = new Senior(null);
 $middle = new Middle($senior);
 $junior = new Junior($middle);
 
-var_dump($junior->handle($task));
+//var_dump($junior->handle($task));
 // CHAIN TEMPLATE END
+
+// ITERATOR TEMPLATE START
+
+$workerBob = new Worker('Bob');
+$workerDan = new Worker('Dan');
+$workerKate = new Worker('Kate');
+
+$workerList = new WorkerList();
+$workerList->setList([$workerBob, $workerDan, $workerKate]);
+//$workerList->next();
+//$workerList->next();
+//$workerList->prev();
+var_dump($workerList->getByIndex()->getName());
+
+// ITERATOR TEMPLATE END
 
