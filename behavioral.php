@@ -20,6 +20,8 @@ use App\Behavioral\Mediator\WorkerInfoBaseMediator;
 use App\Behavioral\ObjectNull\Developer;
 use App\Behavioral\ObjectNull\NullWorker;
 use App\Behavioral\ObjectNull\ObjectManager;
+use App\Behavioral\Observer\Worker as Worker2;
+use App\Behavioral\Observer\WorkerObserver;
 use App\Behavioral\Specification\AndSpecification;
 use App\Behavioral\Specification\NotSpecification;
 use App\Behavioral\Specification\OrSpecification;
@@ -153,7 +155,22 @@ $workerList->setList([$workerBob, $workerDan, $workerKate]);
 $developerDan = new DeveloperMediator('Dan');
 $infobase = new InfoBase();
 $workerInfoBaseMediator = new WorkerInfoBaseMediator($developerDan, $infobase);
-$workerInfoBaseMediator->getWorker();
+//$workerInfoBaseMediator->getWorker();
 
 // MEDIATOR TEMPLATE END
+
+// OBSERVER TEMPLATE START
+
+$observer = new WorkerObserver();
+$worker = new Worker2();
+$worker->attach($observer);
+
+$worker->setName('Bob');
+$worker->setName('Dan');
+$worker->setName('Kate');
+
+var_dump($observer->getWorkers());
+var_dump(count($observer->getWorkers()));
+
+// OBSERVER TEMPLATE END
 
