@@ -17,6 +17,7 @@ use App\Behavioral\Iterator\WorkerList;
 use App\Behavioral\Mediator\Developer as DeveloperMediator;
 use App\Behavioral\Mediator\InfoBase;
 use App\Behavioral\Mediator\WorkerInfoBaseMediator;
+use App\Behavioral\Memento\Task as Task2;
 use App\Behavioral\ObjectNull\Developer;
 use App\Behavioral\ObjectNull\NullWorker;
 use App\Behavioral\ObjectNull\ObjectManager;
@@ -159,6 +160,17 @@ $workerInfoBaseMediator = new WorkerInfoBaseMediator($developerDan, $infobase);
 
 // MEDIATOR TEMPLATE END
 
+// MEMENTO TEMPLATE START
+
+$task = new Task2();
+$task->create();
+
+$memento = $task->saveToMemento();
+$bool = $task->getState() === $memento->getState();
+var_dump($bool);
+
+// MEMENTO TEMPLATE END
+
 // OBSERVER TEMPLATE START
 
 $observer = new WorkerObserver();
@@ -169,8 +181,8 @@ $worker->setName('Bob');
 $worker->setName('Dan');
 $worker->setName('Kate');
 
-var_dump($observer->getWorkers());
-var_dump(count($observer->getWorkers()));
+//var_dump($observer->getWorkers());
+//var_dump(count($observer->getWorkers()));
 
 // OBSERVER TEMPLATE END
 
