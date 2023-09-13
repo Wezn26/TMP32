@@ -35,6 +35,7 @@ use App\Behavioral\Startegy\StringDefiner;
 use App\Behavioral\State\Task;
 use App\Behavioral\TemplateMethod\DesignerTask;
 use App\Behavioral\TemplateMethod\DeveloperTask;
+use App\Behavioral\Visitor\RecorderVisitor;
 /* 
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHP.php to edit this template
@@ -193,10 +194,28 @@ $worker->setName('Kate');
 $developerTask = new DeveloperTask();
 $designerTask = new DesignerTask();
 
-$developerTask->printSections();
-$designerTask->printSections();
-
-
+//$developerTask->printSections();
+//$designerTask->printSections();
 
 // TEMPLATE METHOD END
+
+// VISITOR TEMPLATE START
+
+$visitor = new RecorderVisitor();
+$developer = new App\Behavioral\Visitor\Developer();
+$designer = new App\Behavioral\Visitor\Designer();
+
+$developer->accept($visitor);
+$designer->accept($visitor);
+
+$visited = $visitor->getVisited();
+var_dump($visited);
+
+foreach ($visited as $worker) {
+    $worker->work();
+}
+
+
+
+// VISITOR TEMPLATE END
 
