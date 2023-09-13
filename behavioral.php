@@ -33,6 +33,8 @@ use App\Behavioral\Startegy\Data;
 use App\Behavioral\Startegy\IntDefiner;
 use App\Behavioral\Startegy\StringDefiner;
 use App\Behavioral\State\Task;
+use App\Behavioral\TemplateMethod\DesignerTask;
+use App\Behavioral\TemplateMethod\DeveloperTask;
 /* 
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHP.php to edit this template
@@ -167,7 +169,7 @@ $task->create();
 
 $memento = $task->saveToMemento();
 $bool = $task->getState() === $memento->getState();
-var_dump($bool);
+//var_dump($bool);
 
 // MEMENTO TEMPLATE END
 
@@ -185,4 +187,16 @@ $worker->setName('Kate');
 //var_dump(count($observer->getWorkers()));
 
 // OBSERVER TEMPLATE END
+
+// TEMPLATE METHOD START
+
+$developerTask = new DeveloperTask();
+$designerTask = new DesignerTask();
+
+$developerTask->printSections();
+$designerTask->printSections();
+
+
+
+// TEMPLATE METHOD END
 
